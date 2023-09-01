@@ -19,7 +19,7 @@ args = parser.parse_args()
 output_dir = "./"
 
 model_checkpoint = "microsoft/deberta-v3-base"
-batch_size=1
+batch_size=2
 
 dataset = load_dataset('imdb')
 metric = load_metric("accuracy")
