@@ -16,7 +16,7 @@ def preprocess_function(examples):
     return tokenizer(examples['text'], truncation=True)
 
 model_checkpoint = "deberta-v3-base-finetuned-imdb/checkpoint-12500/"
-batch_size=1
+batch_size=2
 
 dataset = load_dataset('imdb')
 metric = load_metric("accuracy")
@@ -73,7 +73,7 @@ inds = random.choices(inds, k=10)
 filename = "wrong_labels.jsonl"
 output_items = []
 for ind in inds:
-    output_items.append({"review" : encoded_dataset["test"][ind]["text"], "label" : preds[1][ind], "predicted" : pred_labels[ind]})
+    output_items.append({"review" : encoded_dataset["test"][ind]["text"], "label" : str(preds[1][ind]), "predicted" : str(pred_labels[ind])})
 
 with jsonlines.open(filename, mode='w') as writer:
     for item in output_items:
